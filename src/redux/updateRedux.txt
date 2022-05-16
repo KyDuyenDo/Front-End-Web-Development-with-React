@@ -1,0 +1,2 @@
+phan tich cac state
+=> Phan commentForm minh su dung hookfrom de viet : co cac nao ket hop hookfrom va redux khong?

@@ -7,9 +7,11 @@ import {useState} from 'react'
 
 const schema = yup.object().shape({
     yourname: yup.string().min(3).max(10).required("required your name"),
+    yourrating: yup.string(),
+    yourcomment: yup.string(),
   });
 
-function Comment(){
+function Comment({dishId, addComment}){
     const [modal, setModal] = useState(false)
     const {register, handleSubmit, formState: { errors }} = useForm({resolver: yupResolver(schema)})
     const toggleModal = () =>{
@@ -22,7 +24,7 @@ function Comment(){
                 <ModalHeader toggle={toggleModal}>Submit Comments</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit((data)=>{
-                        console.log(data)
+                        addComment(dishId, data.yourrating, data.yourname, data.yourcomment);
                     })}>
                         <div className="form-group">
                             <label className="label">Rating</label>
