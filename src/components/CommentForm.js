@@ -4,6 +4,9 @@ import {useForm} from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {useState} from 'react'
+import { addComment } from '../redux-toolkit/commentSlice';
+import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 const schema = yup.object().shape({
     yourname: yup.string().min(3).max(10).required("required your name"),
@@ -11,8 +14,9 @@ const schema = yup.object().shape({
     yourcomment: yup.string(),
   });
 
-function Comment({dishId, addComment}){
+function Comment({dishId}){
     const [modal, setModal] = useState(false)
+    const dispatch = useDispatch()
     const {register, handleSubmit, formState: { errors }} = useForm({resolver: yupResolver(schema)})
     const toggleModal = () =>{
         setModal(!modal)
@@ -24,7 +28,14 @@ function Comment({dishId, addComment}){
                 <ModalHeader toggle={toggleModal}>Submit Comments</ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit((data)=>{
-                        addComment(dishId, data.yourrating, data.yourname, data.yourcomment);
+                        dispatch(addComment({
+                            dishId:dishId,
+                            id: uuidv4(), 
+                            rating:data.yourrating, 
+                            author:data.yourname, 
+                            comment:data.yourcomment,
+                            date: new Date().toISOString()
+                        }))
                     })}>
                         <div className="form-group">
                             <label className="label">Rating</label>
@@ -47,7 +58,7 @@ function Comment({dishId, addComment}){
                             <label className="label">Comment</label>
                             <textarea className="form-control" rows={7} {...register('yourcomment')}/>
                         </div>
-                        <Button type="submit" value="submit" className="bg-primary">Submit</Button>
+                        <Button type="submit" value="submit" className="bg-primary" onClick={toggleModal}>Submit</Button>
                     </form>
                 </ModalBody>
             </Modal>
