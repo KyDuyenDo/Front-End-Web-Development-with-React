@@ -3,10 +3,10 @@ import './App.css';
 import Main from "./components/MainComponent";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import {ConfigureStore} from './redux/configureStore';
+import store from './redux-toolkit/configureStore';
 
-const store = ConfigureStore();
-
+//import {ConfigureStore} from './redux/configureStore';
+//const store = ConfigureStore();
 class App extends React.Component {
   render(){
     return (
