@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalBody, ModalHeader
 ,Form, FormGroup, Label, Input } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
 
 class Header extends Component {
    constructor(props) {
@@ -38,7 +39,7 @@ class Header extends Component {
                <div className="container">
                   <NavbarToggler onClick={this.toggleNav} /> 
                   <NavbarBrand className="mr-auto d-inline" href="/">
-                     <NavLink to="/home"><img src="assets/images/logo.png" height="30" width="41" alt="Ristorante Con Fusion" /></NavLink>
+                     <NavLink to="/home"><img src={baseUrl + 'images/logo.png'} height="30" width="41" alt="Ristorante Con Fusion" /></NavLink>
                   </NavbarBrand>
                   <Collapse isOpen={this.state.isNavOpen} navbar>
                      <Nav navbar>

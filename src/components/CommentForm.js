@@ -21,14 +21,15 @@ function Comment({dishId, addComment}){
         <div>
             <Button outline onClick={toggleModal}><span className="fa fa-sign-in fa-lg"></span>  Submit Comment</Button>
             <Modal fade={false} isOpen={modal} toggle={toggleModal}>
-                <ModalHeader toggle={toggleModal}>Submit Comments</ModalHeader>
+                <ModalHeader toggle={toggleModal}>Submit Comments
+                </ModalHeader>
                 <ModalBody>
                     <form onSubmit={handleSubmit((data)=>{
                         addComment(dishId, data.yourrating, data.yourname, data.yourcomment);
                     })}>
                         <div className="form-group">
                             <label className="label">Rating</label>
-                            <select class="form-control" type="select" {...register("yourrating")}>
+                            <select className="form-control" type="select" {...register("yourrating")}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>

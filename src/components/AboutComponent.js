@@ -1,11 +1,12 @@
 import React from 'react'
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {baseUrl} from '../shared/baseUrl';
 
 function RenderLeader({leader}){
     return (
         <li key={leader.id} className="media">
-            <img src={leader.image} className="m-4"></img>
+            <img src={baseUrl + leader.image} className="m-4"></img>
             <div className="media-body">
                 <h5 className="mt-0 mb-1">{leader.name}</h5>
                 <p>{leader.designation}</p>
@@ -17,7 +18,7 @@ function RenderLeader({leader}){
 const About = (props) =>{
     const leaders = props.leaders.map((leader)=>{
         return(
-            <RenderLeader leader={leader}/>
+            <RenderLeader key={leader.id} leader={leader}/>
         )
     })
     return(
