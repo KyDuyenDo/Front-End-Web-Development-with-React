@@ -1,6 +1,10 @@
 import { type } from '@testing-library/user-event/dist/type';
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
+import { DISHES } from '../shared/dishes';
+import { COMMENTS } from '../shared/comments';
+import { PROMOTIONS } from '../shared/promotions';
+import { LEADERS } from '../shared/leaders';
 export const addComment = (dishId, rating, author, comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: {
@@ -18,12 +22,12 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    // setTimeout(() => {
-    //     dispatch(addDishes(DISHES));
-    // }, 2000);
-    fetch(baseUrl + 'dishes')
-         .then((response)=> response.json())
-         .then(dishes => dispatch(addDishes(dishes)));
+    setTimeout(() => {
+        dispatch(addDishes(DISHES));
+    }, 2000);
+    // fetch(baseUrl + 'dishes')
+    //      .then((response)=> response.json())
+    //      .then(dishes => dispatch(addDishes(dishes)));
 }// day la thunk action creators
 export const dishesLoading = () => ({
     type: ActionTypes.DISHES_LOADING
@@ -40,9 +44,12 @@ export const addDishes = (dishes) => ({
 });
 // fetch comment
 export const fetchComments = () => (dispatch) => {
-    fetch(baseUrl + 'comments')
-         .then((response)=> response.json())
-         .then(comments => dispatch(addComments(comments)));
+  setTimeout(() => {
+      dispatch(addComments(COMMENTS));
+  }, 2000);
+    // fetch(baseUrl + 'comments')
+    //      .then((response)=> response.json())
+    //      .then(comments => dispatch(addComments(comments)));
 }
 
 export const commentsFailed = (errmess) => ({
@@ -57,9 +64,12 @@ export const addComments = (comments) => ({
 // fetch promos
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
-    fetch(baseUrl + 'promotions')
-         .then((response)=> response.json())
-         .then(promotions => dispatch(addPromos(promotions)));
+    setTimeout(() => {
+        dispatch(addPromos(PROMOTIONS));
+    }, 2000);
+    // fetch(baseUrl + 'promotions')
+    //      .then((response)=> response.json())
+    //      .then(promotions => dispatch(addPromos(promotions)));
 }
 export const promosLoading = () => ({
     type: ActionTypes.PROMOS_LOADING
@@ -78,9 +88,12 @@ export const addPromos = (promotions) => ({
 
 export const fetchLeaders = () => (dispatch) => {
     dispatch(LeadersLoading(true));
-    fetch(baseUrl + 'leaders')
-         .then((response)=> response.json())
-         .then(leaders => dispatch(addLeaders(leaders)));
+    setTimeout(() => {
+        dispatch(addLeaders(LEADERS));
+    }, 2000);
+    // fetch(baseUrl + 'leaders')
+    //      .then((response)=> response.json())
+    //      .then(leaders => dispatch(addLeaders(leaders)));
 }
 export const LeadersLoading = () => ({
     type: ActionTypes.LEADERS_LOADING

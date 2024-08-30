@@ -6,7 +6,8 @@ import {baseUrl} from '../shared/baseUrl';
 function RenderLeader({leader}){
     return (
         <li key={leader.id} className="media">
-            <img src={baseUrl + leader.image} className="m-4"></img>
+            {/* <img src={baseUrl + leader.image} className="m-4"></img> */}
+            <img src={leader.image} className="m-4"></img>
             <div className="media-body">
                 <h5 className="mt-0 mb-1">{leader.name}</h5>
                 <p>{leader.designation}</p>
